@@ -84,7 +84,8 @@ main .input_form .form_box .row_btn button {
 }
 /* RESPONSE MESSAGE */
 main .input_form .form_box #msg,
-main .input_form .form_box #msg2 {
+main .input_form .form_box #msg2,
+main .input_form .form_box #msg_morra {
   position: absolute;
   top: 0;
   left: 0;
@@ -95,7 +96,8 @@ main .input_form .form_box #msg2 {
   background-color: var(--white);
 }
 main .input_form .form_box #msg .msg_content,
-main .input_form .form_box #msg2 .msg_content {
+main .input_form .form_box #msg2 .msg_content,
+main .input_form .form_box #msg_morra .msg_content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -105,21 +107,25 @@ main .input_form .form_box #msg2 .msg_content {
 main .input_form .form_box #msg .msg_content #check_msg {
   text-align: left;
 }
-main .input_form .form_box #msg2 .msg_content #check_msg2 {
+main .input_form .form_box #msg2 .msg_content #check_msg2,
+main .input_form .form_box #msg_morra .msg_content #check_msg_morra {
   text-align: center;
 }
-main .input_form .form_box .row_btn button#check_btn2 {
+main .input_form .form_box .row_btn button#check_btn2,
+main .input_form .form_box .row_btn button#check_btn_morra {
   background-color: var(--green);
   border: 1px solid var(--green);
   color: var(--black);
   font-weight: 600;
 }
 main .input_form #msg button,
-main .input_form #msg2 button  {
+main .input_form #msg2 button,
+main .input_form #msg_morra button  {
   margin-top: 15px;
 }
 main .input_form #msg .highlight,
-main .input_form #msg2 .highlight {
+main .input_form #msg2 .highlight,
+main .input_form #msg_morra .highlight {
   color: var(--purple);
 }
 
