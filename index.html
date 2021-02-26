@@ -50,7 +50,7 @@
     <main>
 
       <!-- ** FORM 1 ** -->
-      <section class="input_form">
+      <section class="input_form palindromia">
         <h1 class="ms_txt_title">la simmetria &egrave; vita</h1>
         <div class="form_box card">
           <div class="row_in">
@@ -68,7 +68,46 @@
               <div id="check_msg"></div>
               <div class="row_btn">
                 <button id="resume_btn">Torna indietro</button>
-                <!-- <button id="insertion_btn" class="hide"><strong>Conferma inserimento</strong></button> -->
+              </div>
+            </div>
+          </div>      
+        </div> <!--form_box-->
+      </section>
+
+      <!-- ** FORM 2 ** -->
+      <section class="input_form evenoddbet">
+        <h1 class="ms_txt_title">la (finta) morra di skynet</h1>
+        <div class="form_box card">
+          <div class="row_in">
+            <div class="input_box">
+              <label for="usr_nubmer" class="ms_txt_1">Scegli un numero da 1 a 5</label>
+              <select id="usr_nubmer" name="usr_nubmer">
+                <option value="">scegli</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <div class="input_box">
+              <label for="usr_bet" class="ms_txt_1">Scommetti su pari o dispari</label>
+              <select id="usr_bet" name="usr_bet">
+                <option value="">scegli</option>
+                <option value="pari">pari</option>
+                <option value="dispari">dispari</option>
+              </select>
+            </div>
+          </div>
+          <div class="row_btn">
+            <button id="check_btn2">Gioca!</button>
+            <button id="erase_btn2">Annulla</button>
+          </div>
+          <div id="msg2" class="hide">
+            <div class="msg_content">
+              <div id="check_msg2"></div>
+              <div class="row_btn">
+                <button id="resume_btn2">Torna indietro</button>
               </div>
             </div>
           </div>      
@@ -98,7 +137,7 @@
 
 
 
-      
+
       <!-- ** DISPLAY RESULT ** -->
       <section id="display_result" class="hide">
         <h1 class="ms_txt_title">lista</h1>

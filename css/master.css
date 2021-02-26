@@ -50,14 +50,21 @@ main .input_form .form_box .row_in {
 main .input_form .form_box .row_in .input_box {
   margin: 0 20px;
 }
-main .input_form .form_box .row_in .input_box input {
+main .input_form .form_box .row_in .input_box input,
+main .input_form .form_box .row_in .input_box select {
   padding: 8px;
-  min-width: 300px;
+  /* min-width: 300px; */
   border: 2px solid var(--black);
   border-radius: 5px;
   color: var(--black);
   background-color: var(--white);
   outline: none;
+}
+main .input_form.palindromia .form_box .row_in .input_box input {
+  min-width: 300px;
+}
+main .input_form.evenoddbet .form_box .row_in .input_box input {
+  width: 50px;
 }
 main .input_form .form_box .row_in .input_box input:focus {
   color: var(--white);
@@ -76,7 +83,8 @@ main .input_form .form_box .row_btn button {
   margin: 30px 10px 0;
 }
 /* RESPONSE MESSAGE */
-main .input_form .form_box #msg {
+main .input_form .form_box #msg,
+main .input_form .form_box #msg2 {
   position: absolute;
   top: 0;
   left: 0;
@@ -86,7 +94,8 @@ main .input_form .form_box #msg {
   border-radius: 5px;
   background-color: var(--white);
 }
-main .input_form .form_box #msg .msg_content {
+main .input_form .form_box #msg .msg_content,
+main .input_form .form_box #msg2 .msg_content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,15 +105,21 @@ main .input_form .form_box #msg .msg_content {
 main .input_form .form_box #msg .msg_content #check_msg {
   text-align: left;
 }
-main .input_form .form_box .row_btn button#insertion_btn {
+main .input_form .form_box #msg2 .msg_content #check_msg2 {
+  text-align: center;
+}
+main .input_form .form_box .row_btn button#check_btn2 {
   background-color: var(--green);
   border: 1px solid var(--green);
   color: var(--black);
+  font-weight: 600;
 }
-main .input_form #msg button {
+main .input_form #msg button,
+main .input_form #msg2 button  {
   margin-top: 15px;
 }
-main .input_form #msg .highlight {
+main .input_form #msg .highlight,
+main .input_form #msg2 .highlight {
   color: var(--purple);
 }
 
