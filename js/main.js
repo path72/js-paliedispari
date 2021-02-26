@@ -160,6 +160,7 @@ var usrBetMorraForm    = document.getElementById('usr_bet_morra');
 // info display hooks
 var msgHtml3      = document.getElementById('msg_morra');
 var checkMsgHtml3 = document.getElementById('check_msg_morra');
+var statHtml      = document.getElementById('stat_morra');
 
 // button hooks
 var checkBtn3     = document.getElementById('check_btn_morra');
@@ -167,14 +168,15 @@ var eraseBtn3     = document.getElementById('erase_btn_morra');
 var resumeBtn3    = document.getElementById('resume_btn_morra');
 
 // aux variables
-var betOKmorra = false;
+var betOKmorra = false,
+    stat = [0,0];
 
 checkBtn3.addEventListener('click', 
   function() {
 
     // retrieving data form
-    var usrNumberValue = usrNumberMorraForm.value; // 1,2,3,4,5
-    var usrBetValue    = usrBetMorraForm.value;    // 1,2,3,4,5
+    var usrNumberValue = usrNumberMorraForm.value; // 0,1,2,3,4,5
+    var usrBetValue    = usrBetMorraForm.value;    // 0,1,2,3,4,5,6,7,8,9,10
     var msg;
 
     if (usrNumberValue == '' || usrBetValue == '') {
@@ -195,9 +197,9 @@ checkBtn3.addEventListener('click',
       console.log('La somma è '+sum);
 
       var betMsg;
-      if      (sum == usrBetValue && sum != skyBet) betMsg = 'hai vinto!';
-      else if (sum != usrBetValue && sum == skyBet) betMsg = 'ha vinto SkyNet!';
-      else                                          betMsg = 'nulla di fatto!';
+      if      (sum == usrBetValue && sum != skyBet) { betMsg = 'hai vinto!';       stat[0]++; }
+      else if (sum != usrBetValue && sum == skyBet) { betMsg = 'ha vinto SkyNet!'; stat[1]++; }
+      else                                          { betMsg = 'nulla di fatto!'; }
       console.log(betMsg);
       
       var bestMsg = skyBest(random(1,8));
@@ -206,11 +208,13 @@ checkBtn3.addEventListener('click',
             'SkyNet urla <strong class="highlight">'+skyBet+'</strong>, '+
             bestMsg+' e tira <strong>'+skyNumber+'</strong>,<br><br>'+
             'La somma è <strong class="highlight">'+sum+'</strong>, <strong>'+betMsg+'</strong>';
-      // msg = 'Hai scelto il numero <strong>'+usrNumberValue+'</strong> '+
-      //       'scommettendo su <strong class="highlight">'+usrBetValue+'</strong><br><br>'+
-      //       'SkyNet ha scelto il numero <strong>'+skyNumber+'</strong><br><br>'+
-      //       'La somma <strong>'+sum+'</strong> è <strong class="highlight">'+sumIsEven[1]+'</strong>, '+
-      //       'allora <strong class="highlight">'+betMsg+'</strong>';
+      
+      // stat
+      console.log(stat);
+      var statMsg = '';
+      statMsg = 'Tu '+stat[0]+' - SkyNet  '+stat[1];
+      statHtml.innerHTML = statMsg;
+
     }
 
     checkMsgHtml3.innerHTML = msg;
