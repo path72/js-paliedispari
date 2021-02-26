@@ -67,7 +67,6 @@ function isPalindrome(parola) {
     if (si != ' ' && si != sj) ret[0] = false;
     ret[1].push(si);
     ret[2].push(sj);
-    // console.log(si+' - '+sj);
   }
   return ret;
 }
@@ -94,7 +93,7 @@ var betOK = false;
 checkBtn2.addEventListener('click', 
   function() {
 
-    // retrieving data form
+    // form data retrieving
     var usrNumberValue = usrNumberForm.value; // 1,2,3,4,5
     var usrBetValue    = usrBetForm.value;    // pari,dispari
     var msg;
@@ -174,7 +173,7 @@ var betOKmorra = false,
 checkBtn3.addEventListener('click', 
   function() {
 
-    // retrieving data form
+    // form data retrieving
     var usrNumberValue = usrNumberMorraForm.value; // 0,1,2,3,4,5
     var usrBetValue    = usrBetMorraForm.value;    // 0,1,2,3,4,5,6,7,8,9,10
     var msg;
@@ -185,7 +184,6 @@ checkBtn3.addEventListener('click',
     } else {
 
       betOKmorra = true;
-      // var usrBetIsEven = (usrBetValue == 'pari') ? true : false;
       console.log('Utente numero: '+usrNumberValue+' - Scommessa: '+usrBetValue);
 
       var skyNumber = random(0,5);
@@ -193,7 +191,6 @@ checkBtn3.addEventListener('click',
       console.log('SkyNet numero: '+skyNumber+' - Scommessa: '+skyBet);
 
       var sum = sum2(usrNumberValue,skyNumber);
-      // var sumIsEven = isEven(sum); // array
       console.log('La somma è '+sum);
 
       var betMsg;
@@ -202,11 +199,10 @@ checkBtn3.addEventListener('click',
       else                                          { betMsg = 'nulla di fatto!'; }
       console.log(betMsg);
       
-      var bestMsg = skyBest(random(1,8));
       msg = 'Tu urli <strong class="highlight">'+usrBetValue+'</strong> '+
             'e tiri <strong>'+usrNumberValue+'</strong><br>'+
             'SkyNet urla <strong class="highlight">'+skyBet+'</strong>, '+
-            bestMsg+' e tira <strong>'+skyNumber+'</strong>,<br><br>'+
+            skyBest()+' e tira <strong>'+skyNumber+'</strong>,<br><br>'+
             'La somma è <strong class="highlight">'+sum+'</strong>, <strong>'+betMsg+'</strong>';
       
       // stat
@@ -244,11 +240,6 @@ resumeBtn3.addEventListener('click',
 //###################################################### 
 // FUNZIONI
 
-function skyBest(N) {
-  var bestList = ['bestemmia', 'impreca', 'sputa', 'si stizzisce', 'raglia', 'ti spintona', 'sbatte i pugni', 'scalcia'];
-  if (N>=1 && N<=8) return bestList[N-1];
-  else return bestList[0];
-}
 function random(n1,n2) {
   return Math.floor(Math.random()*(n2-n1+1))+n1;
 }
@@ -264,4 +255,9 @@ function isEven(n) {
   ret[0] = (n % 2 == 0) ? true : false;
   ret[1] = (ret[0]) ? 'pari' : 'dispari';
   return ret;
+}
+function skyBest() {
+  var bestList = ['bestemmia', 'impreca', 'sputa', 'si stizzisce', 'raglia', 'ti spintona', 'sbatte i pugni', 'scalcia'];
+  var N = random(1,8);
+  return bestList[N-1];
 }
