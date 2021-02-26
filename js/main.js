@@ -33,7 +33,7 @@ checkBtn.addEventListener('click',
     } else {
       msg  = '<strong class="highlight">' + string + '</strong>' + ((result[0]) ? ' è palindorma!' : ' non è palindorma!');
       var msg1='', msg2='';
-      for (var i=0; i<string.length; i++) {
+      for (var i=0; i<result[3]; i++) {
         msg1 += result[1][i]+' '; 
         msg2 += result[2][i]+' ';
       }
@@ -63,24 +63,16 @@ eraseBtn.addEventListener('click',
 );
 
 function isPalindrome(parola) {
-  var ret = [true,[],[]];
-
-  // togli gli spazi
-  // for (var i=0; i<parola.length; i++) {
-  //   console.log(parola.slice(i,i+1));
-  //   console.log(parola.subString(i,i+1));
-  //   if (parola.slice(i,i+1)== ' ') {
-  //     // parola.subString()
-  //   }
-  // }
-
-  for (var i=0; i<parola.length; i++) {
-    var j = parola.length-1 - i;
-    // console.log(parola.slice(i,i+1)+' - '+parola.slice(j,j+1));
-    if (parola.slice(i,i+1) != parola.slice(j,j+1)) ret[0] = false;
-    ret[1][i] = parola.slice(i,i+1);
-    ret[2][i] = parola.slice(j,j+1);
-    // console.log(ret[1][i]+' - '+ret[2][i]);
+  var string = parola.replace(/ /g,'');
+  var ret = [true,[],[],string.length];
+  for (var i=0; i<ret[3]; i++) {
+    var j = string.length-1 - i;
+    var si = string.slice(i,i+1);
+    var sj = string.slice(j,j+1);
+    if (si != ' ' && si != sj) ret[0] = false;
+    ret[1].push(si);
+    ret[2].push(sj);
+    // console.log(si+' - '+sj);
   }
   return ret;
 }
