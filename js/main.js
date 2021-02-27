@@ -19,12 +19,13 @@ checkBtn.addEventListener('click',
     // form data retrieving
     var string = usrStringForm.value;
     var result = isPalindrome(string);
-    var msg;
 
+    var msg;
+    // consistency check
     if (string == '') {
       msg = 'Devi inserire una parola!'
     } else {
-      msg  = '<strong class="highlight">' + string + '</strong>' + ((result[0]) ? ' è palindorma!' : ' non è palindorma!');
+      msg  = '<strong class="highlight">' + string + '</strong>' + ((result[0]) ? ' è palindormo!' : ' non è palindormo!');
       var msg1='', msg2='';
       for (var i=0; i<result[3]; i++) {
         msg1 += result[1][i]+' '; 
@@ -51,24 +52,24 @@ resumeBtn.addEventListener('click',
   }
 );
 
-function isPalindrome(parola) {
+// FUNZIONI PALINDROMIA
+
+function isPalindrome(str) {
   /*  restituisce array:
         palindromo true/false
         lettere parola, senza spazi
         lettere paraola al contrario, senza spazi 
         lunghezza parola senza spazi
   */ 
-  var string = parola.replace(/ /g,'');
-  var ret = [true,[],[],string.length];
-  for (var i=0; i<ret[3]; i++) {
-    var j = string.length-1 - i;
-    var si = string.slice(i,i+1);
-    var sj = string.slice(j,j+1);
-    if (si != ' ' && si != sj) ret[0] = false;
-    ret[1].push(si);
-    ret[2].push(sj);
+  var s = str.replace(/ /g,'');
+  var r = [true,[],[],s.length];
+  for (var i=0; i<r[3]; i++) {
+    var j = s.length-1 - i;
+    r[1][i] = s.slice(i,i+1);
+    r[2][i] = s.slice(j,j+1);
+    if (r[1][i] != r[2][i]) r[0] = false;
   }
-  return ret;
+  return r;
 }
 
 //###################################################### 
@@ -96,8 +97,9 @@ checkBtn2.addEventListener('click',
     // form data retrieving
     var usrNumberValue = usrNumberForm.value; // 1,2,3,4,5
     var usrBetValue    = usrBetForm.value;    // pari,dispari
-    var msg;
 
+    var msg;
+    // consistency check
     if (usrNumberValue == '' || usrBetValue == '') {
       betOK = false;
       msg = 'Compila tutti i campi!';
@@ -124,10 +126,8 @@ checkBtn2.addEventListener('click',
             'La somma <strong>'+sum+'</strong> è <strong class="highlight">'+sumIsEven[1]+'</strong>, '+
             'allora <strong class="highlight">'+betMsg+'</strong>';
     }
-
     checkMsgHtml2.innerHTML = msg;
     msgHtml2.className = 'show';
-
   }
 );
 
@@ -167,8 +167,7 @@ var eraseBtn3     = document.getElementById('erase_btn_morra');
 var resumeBtn3    = document.getElementById('resume_btn_morra');
 
 // aux variables
-var betOKmorra = false,
-    stat = [0,0];
+var betOKmorra = false, stat = [0,0];
 
 checkBtn3.addEventListener('click', 
   function() {
@@ -176,8 +175,12 @@ checkBtn3.addEventListener('click',
     // form data retrieving
     var usrNumberValue = usrNumberMorraForm.value; // 0,1,2,3,4,5
     var usrBetValue    = usrBetMorraForm.value;    // 0,1,2,3,4,5,6,7,8,9,10
-    var msg;
 
+    msgHtml3.style.animation = '';
+    var win=false;
+
+    var msg;
+    // consistency check
     if (usrNumberValue == '' || usrBetValue == '') {
       betOKmorra = false;
       msg = 'Compila tutti i campi!';
@@ -187,16 +190,22 @@ checkBtn3.addEventListener('click',
       console.log('Utente numero: '+usrNumberValue+' - Scommessa: '+usrBetValue);
 
       var skyNumber = random(0,5);
-      var skyBet = random(0,5);
+      var skyBet = random(skyNumber,skyNumber+5);
       console.log('SkyNet numero: '+skyNumber+' - Scommessa: '+skyBet);
 
       var sum = sum2(usrNumberValue,skyNumber);
       console.log('La somma è '+sum);
 
       var betMsg;
-      if      (sum == usrBetValue && sum != skyBet) { betMsg = 'hai vinto!';       stat[0]++; }
-      else if (sum != usrBetValue && sum == skyBet) { betMsg = 'ha vinto SkyNet!'; stat[1]++; }
-      else                                          { betMsg = 'nulla di fatto!'; }
+      if (sum == usrBetValue && sum != skyBet) { 
+        betMsg = 'hai vinto!'; stat[0]++; win=true; 
+      }
+      else if (sum != usrBetValue && sum == skyBet) { 
+        betMsg = 'ha vinto SkyNet!'; stat[1]++; win=false;  
+      }
+      else { 
+        betMsg = 'nulla di fatto!'; win=false; 
+      }
       console.log(betMsg);
       
       msg = 'Tu urli <strong class="highlight">'+usrBetValue+'</strong> '+
@@ -207,15 +216,18 @@ checkBtn3.addEventListener('click',
       
       // stat
       console.log(stat);
-      var statMsg = '';
-      statMsg = 'Tu '+stat[0]+' - SkyNet  '+stat[1];
+      var statMsg = 'Tu '+stat[0]+' - SkyNet  '+stat[1];
       statHtml.innerHTML = statMsg;
 
+      if (win) {
+        msgHtml3.style.animation = 'angry-skynet 0.6s ease-in-out both';
+        // remove+reinsert animated node element
+        // var msgHtml3Clone = msgHtml3.cloneNode(true);
+        // msgHtml3.parentNode.replaceChild(msgHtml3Clone,msgHtml3);
+      }
     }
-
     checkMsgHtml3.innerHTML = msg;
     msgHtml3.className = 'show';
-
   }
 );
 
@@ -237,8 +249,7 @@ resumeBtn3.addEventListener('click',
   }
 );
 
-//###################################################### 
-// FUNZIONI
+// FUNZIONI MORRA
 
 function random(n1,n2) {
   return Math.floor(Math.random()*(n2-n1+1))+n1;
@@ -251,13 +262,13 @@ function isEven(n) {
         numero pari true/false
         traduzione pari/dispari
   */
-  var ret = [];
-  ret[0] = (n % 2 == 0) ? true : false;
-  ret[1] = (ret[0]) ? 'pari' : 'dispari';
-  return ret;
+  var r = [];
+  r[0] = (n % 2 == 0) ? true : false;
+  r[1] = (r[0]) ? 'pari' : 'dispari';
+  return r;
 }
 function skyBest() {
-  var bestList = ['bestemmia', 'impreca', 'sputa', 'si stizzisce', 'raglia', 'ti spintona', 'sbatte i pugni', 'scalcia'];
+  var l = ['bestemmia', 'impreca', 'sputa', 'si stizzisce', 'raglia', 'ti spintona', 'sbatte i pugni', 'scalcia'];
   var N = random(1,8);
-  return bestList[N-1];
+  return l[N-1];
 }

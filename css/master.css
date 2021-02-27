@@ -111,6 +111,7 @@ main .input_form .form_box #msg2 .msg_content #check_msg2,
 main .input_form .form_box #msg_morra .msg_content #check_msg_morra {
   text-align: center;
 }
+main .input_form .form_box .row_btn button#check_btn,
 main .input_form .form_box .row_btn button#check_btn2,
 main .input_form .form_box .row_btn button#check_btn_morra {
   background-color: var(--green);
@@ -127,6 +128,13 @@ main .input_form #msg .highlight,
 main .input_form #msg2 .highlight,
 main .input_form #msg_morra .highlight {
   color: var(--purple);
+}
+@keyframes angry-skynet {
+ 20% { transform: translateX(50px)  rotate(10deg);  }
+ 40% { transform: translateX(-50px) rotate(-10deg); }
+ 60% { transform: translateX(50px)  rotate(10deg);  }
+ 80% { transform: translateX(-50px) rotate(-10deg); }
+100% { transform: translateX(0)     rotate(0deg);   }
 }
 
 /****************************************************************
@@ -158,15 +166,15 @@ main .input_form #msg_morra .highlight {
 */
 .hide {
   display: none;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.3s;
+  /* visibility: hidden; */
+  /* opacity: 0; */
+  /* transition: all 0.3s; */
 }
 .show {
   display: block;
-  visibility: visible;
-  opacity: 1;
-  transition: all 0.3s;
+  /* visibility: visible; */
+  /* opacity: 1; */
+  /* transition: all 0.3s; */
 }
 
 /****************************************************************
@@ -200,3 +208,4 @@ button:hover {
   font-weight: 600;
   margin: 10px;
 }
+
