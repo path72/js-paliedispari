@@ -88,7 +88,8 @@ function removeSpaces(str) {
 
 // form sources
 var usrNumberForm = document.getElementById('usr_nubmer');
-var usrBetForm    = document.getElementById('usr_bet');
+// var usrBetForm    = document.getElementById('usr_bet');
+var usrBetForm    = document.getElementsByName('usr_bet'); // array
 
 // info display hooks
 var msgHtml2      = document.getElementById('msg2');
@@ -107,11 +108,15 @@ checkBtn2.addEventListener('click',
 
     // form data retrieving
     var usrNumberValue = usrNumberForm.value; // 1,2,3,4,5
-    var usrBetValue    = usrBetForm.value;    // pari,dispari
+    // var usrBetValue    = usrBetForm.value;    // pari,dispari
+    var usrBetValue;
+    for (var i=0; i<usrBetForm.length; i++) {
+      if (usrBetForm[i].checked) usrBetValue = usrBetForm[i].value;
+    }
 
     var msg;
     // consistency check
-    if (usrNumberValue == '' || usrBetValue == '') {
+    if (usrNumberValue == '' || usrBetValue == undefined) {
       betOK = false;
       msg = 'Compila tutti i campi!';
     } else {
@@ -145,7 +150,10 @@ checkBtn2.addEventListener('click',
 eraseBtn2.addEventListener('click', 
   function() { 
     usrNumberForm.value  = '';
-    usrBetForm.value     = '';
+    // usrBetForm.value     = '';
+    for (var i=0; i<usrBetForm.length; i++) {
+      usrBetForm[i].checked = false;;
+    }
   }
 );
 
@@ -155,7 +163,10 @@ resumeBtn2.addEventListener('click',
     checkMsgHtml2.innerHTML = '';
     if (betOK == true) {
       usrNumberForm.value     = '';
-      usrBetForm.value        = '';
+      // usrBetForm.value        = '';
+      for (var i=0; i<usrBetForm.length; i++) {
+        usrBetForm[i].checked = false;;
+      }
     }
   }
 );
