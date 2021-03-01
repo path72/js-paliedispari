@@ -23,7 +23,7 @@ checkBtn.addEventListener('click',
     var msg;
     // consistency check
     if (string == '') {
-      msg = 'Devi inserire una parola!'
+      msg = 'Devi inserire un testo!'
     } else {
       msg  = '<strong class="highlight">' + string + '</strong>' + ((result[0]) ? ' è palindormo!' : ' non è palindormo!');
       var msg1='', msg2='';
@@ -61,13 +61,24 @@ function isPalindrome(str) {
         lettere paraola al contrario, senza spazi 
         lunghezza parola senza spazi
   */ 
-  var s = str.replace(/ /g,'');
+  // var s = str.replace(/ /g,'');
+  var s = removeSpaces(str);
   var r = [true,[],[],s.length];
   for (var i=0; i<r[3]; i++) {
     var j = s.length-1 - i;
     r[1][i] = s.slice(i,i+1);
     r[2][i] = s.slice(j,j+1);
     if (r[1][i] != r[2][i]) r[0] = false;
+  }
+  return r;
+}
+
+// var s = str.replace(/ /g,'');
+function removeSpaces(str) {
+  var r = '';
+  for (var i=0; i<str.length; i++) {
+    si = str.slice(i,i+1);
+    if (si != ' ') r += si;
   }
   return r;
 }
